@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyStream - Movies</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<section class="content">
+  <h1>Explore Movies</h1>
+  <div class="search-box">
+    <input type="text" id="movie-input" placeholder="Search for a movie..." />
+    <button class="btn" onclick="searchOMDb('movie-input', 'movie-results', 'movie')">Search</button>
+  </div>
+
+  <div id="movie-results" class="grid"></div>
+
+  <h2>Top Rated Movies</h2>
+  <div id="featured-movies" class="grid"></div>
+</section>
+
+<div id="footer"></div>
+
+<script src="../assets/js/index.js"></script>
+<script>
+  const topMovies = ["Inception", "The Dark Knight", "Avengers", "Interstellar", "Joker", "Pulp Fiction"];
+  loadFeatured(topMovies, "featured-movies", "movie");
+
+  document.getElementById('movie-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchOMDb('movie-input', 'movie-results', 'movie');
+  });
+</script>
+</body>
+</html>
+

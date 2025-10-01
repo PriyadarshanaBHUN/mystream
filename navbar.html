@@ -1,0 +1,42 @@
+<nav class="navbar" role="navigation" aria-label="Main">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo" aria-label="MyStream Home">
+      <span class="logo-glow">MyStream</span>
+    </a>
+
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul id="nav-links" class="nav-links">
+      <li><a href="index.html" class="nav-link">Home</a></li>
+      <li><a href="pages/movies.html" class="nav-link">Movies</a></li>
+      <li><a href="pages/tvshows.html" class="nav-link">TV Shows</a></li>
+      <li><a href="pages/about.html" class="nav-link">About</a></li>
+      <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Active link highlight 
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const fullPath = new URL(link.getAttribute('href'), window.location.origin + (window.location.pathname.endsWith('/') ? '' : '/')).pathname;
+    if (window.location.pathname.endsWith('/') && fullPath.endsWith('/index.html')) {
+      link.classList.add('active');
+    } else if (window.location.pathname === fullPath) {
+      link.classList.add('active');
+    }
+  });
+
+  // Hamburger toggle 
+  const burger = document.querySelector('.hamburger');
+  const list = document.getElementById('nav-links');
+  if (burger && list) {
+    burger.addEventListener('click', () => {
+      const open = list.classList.toggle('open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+  }
+</script>
+

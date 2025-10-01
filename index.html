@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyStream - Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-text">
+    <h1 class="fade-in">Welcome to <span>MyStream</span></h1>
+    <p class="fade-in-delay">Discover movies and TV shows with full details, ratings, and posters.</p>
+    <div class="hero-actions fade-in-delay2">
+      <a href="pages/movies.html" class="btn">Explore Movies</a>
+      <a href="pages/tvshows.html" class="btn alt">Explore TV Shows</a>
+    </div>
+  </div>
+</header>
+
+<section class="content">
+  <h2>Featured Movies</h2>
+  <div id="featured-movies" class="grid"></div>
+
+  <h2>Featured TV Shows</h2>
+  <div id="featured-tv" class="grid"></div>
+</section>
+
+<div id="footer"></div>
+
+<script src="assets/js/index.js"></script>
+<script>
+  const featuredMovies = ["Inception", "The Dark Knight", "Avengers", "Interstellar", "Joker", "Pulp Fiction"];
+  const featuredTV     = ["Breaking Bad", "Stranger Things", "Loki", "The Witcher", "Friends", "Game of Thrones"];
+  loadFeatured(featuredMovies, "featured-movies", "movie");
+  loadFeatured(featuredTV, "featured-tv", "series");
+</script>
+</body>
+</html>

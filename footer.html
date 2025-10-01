@@ -1,0 +1,24 @@
+
+<footer>
+  <div class="footer-inner">
+    <p>&copy; <span id="year"></span> MyStream • Built with OMDb</p>
+    <div id="footer-links" class="footer-links">
+      <a href="pages/about.html" class="footer-link">About</a>
+      <a href="pages/contact.html" class="footer-link">Contact</a>
+    </div>
+    <div class="socials">
+    <a href="https://x.com/Udara_NP">🐦 Twitter</a>
+    <a href="https://www.facebook.com/udara.nuwan.73700">📘 Facebook</a>
+    <a href="linkedin.com/in/priyadarshana-b-h-u-n-60b5a5219/">📸 LinkedIn</a>
+  </div>
+  </div>
+  <button id="scrollTop" aria-label="Scroll to top">↑</button>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const topBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+  });
+  topBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>

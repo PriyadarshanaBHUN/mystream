@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyStream - Contact</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+  <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar"></div>
+
+<!-- Contact Section -->
+<section class="content">
+  <h1>Contact Us</h1>
+  <p style="text-align:center; max-width:800px; margin:auto;">Send us your feedback, suggestions, or queries.</p>
+
+  <!-- Contact Form -->
+  <form class="contact-form" id="contact-form" novalidate>
+    <input type="text" name="name" id="name" placeholder="Your Name" required />
+    <input type="email" name="email" id="email" placeholder="Email Address" required />
+    <textarea name="message" id="message" rows="5" placeholder="Your Message" required></textarea>
+    <button type="submit" class="btn" id="sendBtn">Send Message</button>
+    <p id="formStatus" class="form-status" aria-live="polite"></p>
+  </form>
+</section>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<!-- EmailJS and JavaScript -->
+<script src="../assets/js/index.js"></script>
+<script>
+  // Initialize EmailJS with your public key
+  emailjs.init("nETCTfPa0dVoCy1yz"); // Replace with your public key
+
+  // Get elements for form and status
+  const form = document.getElementById("contact-form");
+  const sendBtn = document.getElementById("sendBtn");
+  const statusEl = document.getElementById("formStatus");
+
+  // Function to display the status message
+  function setStatus(msg, ok=true){
+    statusEl.textContent = msg;
+    statusEl.className = "form-status " + (ok ? "ok" : "err");
+  }
+
+  // Form submission event listener
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    setStatus(""); // Reset the status message
+
+    // Get form values
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Basic validation
+    if (!name || !email || !message) {
+      setStatus("Please fill in all fields.", false);
+      return;
+    }
+
+    console.log("Form values:", { name, email, message }); // Debugging: Check form values
+
+    // Disable the send button while sending the email
+    sendBtn.disabled = true;
+    sendBtn.textContent = "Sending...";
+
+    try {
+      // Send the email using EmailJS
+      await emailjs.send("service_kqtqs0i", "template_2glxaya", {
+        from_name: name,
+        from_email: email,
+        message: message
+      });
+      setStatus("✅ Your message has been sent successfully!"); // Success message
+      form.reset(); // Reset the form fields
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      setStatus("❌ Something went wrong. Please try again later.", false); // Error message
+    } finally {
+      sendBtn.disabled = false;
+      sendBtn.textContent = "Send Message"; // Reset the button text
+    }
+  });
+</script>
+
+</body>
+</html>

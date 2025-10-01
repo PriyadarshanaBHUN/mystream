@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyStream - TV Shows</title>
+  <link rel="stylesheet" href="../assets/css/style.css"/>
+</head>
+<body>
+
+<div id="navbar"></div>
+
+<section class="content">
+  <h1>Explore TV Shows</h1>
+  <div class="search-box">
+    <input type="text" id="tv-input" placeholder="Search for a TV show..." />
+    <button class="btn" onclick="searchOMDb('tv-input','tv-results','series')">Search</button>
+  </div>
+
+  <div id="tv-results" class="grid"></div>
+
+  <h2>Top Rated TV Shows</h2>
+  <div id="featured-tv" class="grid"></div>
+</section>
+
+<div id="footer"></div>
+
+<script src="../assets/js/index.js"></script>
+<script>
+  const topTV = ["Breaking Bad", "Stranger Things", "Loki", "The Witcher", "Friends", "Game of Thrones"];
+  loadFeatured(topTV, "featured-tv", "series");
+
+  document.getElementById('tv-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') searchOMDb('tv-input','tv-results','series');
+  });
+</script>
+</body>
+</html>
